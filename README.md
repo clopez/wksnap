@@ -30,20 +30,16 @@ wksnap [website-uri|file] path-to-destination.png
 
 ### Using wksnap headless
 
-It needs either a Wayland or a X server.
+You can use xvfb-run for running it headless
 
-But it is possible to run it headless with Xvfb
-
-For example:
-
-* Execute Xvfb on a terminal
+* Install xvfb
 ```
-Xvfb :67 -screen 0 1280x720x24 -nolisten tcp
+apt-get install xvfb
 ```
 
-* In another terminal run it like:
+* Run wksnap with it:
 ```
-DISPLAY=:67 wksnap uri file
+xvfb-run wksnap uri file
 ```
 
 ## TODO
@@ -51,6 +47,6 @@ DISPLAY=:67 wksnap uri file
 List of things I would like to add
 
  * Add support for saving the webpages in more formats than PNG (PDF?)
- * Automatically spawn a Xvfb server if there isn't any valid X/Wayland display available.
+ * Automatically wrap wksnap with xvfb-run without asking the user to do it.
  * Make configurable the default size of the snapshoots
  * Detect when a website couldn't load and return something better than an empty image.
